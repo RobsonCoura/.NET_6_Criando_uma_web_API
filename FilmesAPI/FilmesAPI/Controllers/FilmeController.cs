@@ -23,7 +23,7 @@ public class FilmeController : ControllerBase
         Console.WriteLine(filme.Duracao);
     }
 
-    //Método para buscar uma lista de filmes
+    //Método com paginacao para buscar filmes
     [HttpGet]
     public IEnumerable<Filme> RecuperarFilmes([FromQuery] int skip = 0, [FromQuery] int take = 50)
     {
@@ -32,11 +32,13 @@ public class FilmeController : ControllerBase
 
     //Método para buscar filme por id especifico 
     [HttpGet("{id}")]
-    public Filme? RecuperarFilmePorId(int id)
+    public IActionResult RecuperarFilmePorId(int id)
     {
 
-        return filmes.FirstOrDefault(filme => filme.Id == id);
-
+        var filme = filmes.FirstOrDefault(filme => filme.Id == id);
+        //Validacao de consulta de filme
+        if (filme == null) return NotFound();
+        return Ok(filme);
      }
 
 }
