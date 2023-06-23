@@ -25,9 +25,9 @@ public class FilmeController : ControllerBase
 
     //Método para buscar uma lista de filmes
     [HttpGet]
-    public IEnumerable<Filme> RecuperarFilmes()
+    public IEnumerable<Filme> RecuperarFilmes([FromQuery] int skip = 0, [FromQuery] int take = 50)
     {
-        return filmes;
+        return filmes.Skip(skip).Take(take);
     }
 
     //Método para buscar filme por id especifico 
