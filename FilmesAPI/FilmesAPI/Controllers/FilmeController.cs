@@ -15,12 +15,12 @@ public class FilmeController : ControllerBase
 
     //Método para adicionar filme
     [HttpPost]
-    public void AdicionarFilme([FromBody] Filme filme)
+    public IActionResult AdicionarFilme([FromBody] Filme filme)
     {
         filme.Id = id++;
         filmes.Add(filme);
-        Console.WriteLine(filme.Titulo);
-        Console.WriteLine(filme.Duracao);
+        return CreatedAtAction(nameof(RecuperarFilmePorId), 
+            new { id = filme.Id }, filme);
     }
 
     //Método com paginacao para buscar filmes
