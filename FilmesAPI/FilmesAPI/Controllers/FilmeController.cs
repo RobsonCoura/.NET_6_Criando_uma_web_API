@@ -16,6 +16,7 @@ public class FilmeController : ControllerBase
     [HttpPost]
     public void AdicionarFilme([FromBody] Filme filme)
     {
+        
         filmes.Add(filme);
         Console.WriteLine(filme.Titulo);
         Console.WriteLine(filme.Duracao);
