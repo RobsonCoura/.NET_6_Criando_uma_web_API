@@ -21,4 +21,11 @@ public class FilmeController : ControllerBase
         Console.WriteLine(filme.Titulo);
         Console.WriteLine(filme.Duracao);
     }
+
+    //Método para buscar uma lista de filmes
+    [HttpGet]
+    public IEnumerable<Filme> RecuperarFilmes()
+    {
+        return filmes;
+    }
 }
