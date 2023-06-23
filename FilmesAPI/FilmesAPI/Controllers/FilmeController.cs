@@ -11,12 +11,13 @@ public class FilmeController : ControllerBase
 {
 
     private static List<Filme> filmes = new List<Filme>();
+    private static int id = 0;
 
     //Método para adicionar filme
     [HttpPost]
     public void AdicionarFilme([FromBody] Filme filme)
     {
-        
+        filme.Id = id++;
         filmes.Add(filme);
         Console.WriteLine(filme.Titulo);
         Console.WriteLine(filme.Duracao);
@@ -28,4 +29,14 @@ public class FilmeController : ControllerBase
     {
         return filmes;
     }
+
+    //Método para buscar filme por id especifico 
+    [HttpGet("{id}")]
+    public Filme? RecuperarFilmePorId(int id)
+    {
+
+        return filmes.FirstOrDefault(filme => filme.Id == id);
+
+     }
+
 }
